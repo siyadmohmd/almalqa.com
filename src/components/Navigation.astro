@@ -1,0 +1,120 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '#home', label: 'Home' },
+  { href: '#menu', label: 'Menu' },
+  { href: '#our-story', label: 'Our Story' },
+  { href: '#order', label: 'Order Now', isButton: true },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 px-4 py-4 md:px-8">
+  <nav class="max-w-7xl mx-auto flex items-center justify-between bg-maroon/95 backdrop-blur-md rounded-3xl px-6 py-3 shadow-lg">
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-2 transition-transform hover:scale-105">
+      <img src="/images/logo.png" alt="Al-Malqa" class="h-12 md:h-14 w-auto" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-8">
+      {navLinks.map((link) => (
+        link.isButton ? (
+          <a
+            href={link.href}
+            class="bg-carrot text-licorice font-medium px-6 py-2.5 rounded-2xl transition-all hover:bg-desert-sand hover:scale-105 active:scale-95"
+          >
+            {link.label}
+          </a>
+        ) : (
+          <a
+            href={link.href}
+            class:list={[
+              "text-desert-sand/80 hover:text-desert-sand transition-colors relative",
+              { "text-desert-sand after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-carrot": currentPath === link.href }
+            ]}
+          >
+            {link.label}
+          </a>
+        )
+      ))}
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex flex-col gap-1.5 p-2"
+      aria-label="Toggle menu"
+    >
+      <span class="w-6 h-0.5 bg-desert-sand transition-transform origin-center" id="line1"></span>
+      <span class="w-6 h-0.5 bg-desert-sand transition-opacity" id="line2"></span>
+      <span class="w-6 h-0.5 bg-desert-sand transition-transform origin-center" id="line3"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-x-4 top-20 bg-licorice/95 backdrop-blur-lg rounded-3xl p-6 shadow-xl transform scale-95 opacity-0 pointer-events-none transition-all duration-300"
+  >
+    <div class="flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "text-desert-sand text-lg py-3 px-4 rounded-2xl transition-all",
+            link.isButton ? "bg-carrot text-licorice text-center font-medium" : "hover:bg-desert-sand/10",
+            { "bg-maroon": currentPath === link.href && !link.isButton }
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const line1 = document.getElementById('line1');
+  const line2 = document.getElementById('line2');
+  const line3 = document.getElementById('line3');
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  
+  let isOpen = false;
+
+  function closeMenu() {
+    isOpen = false;
+    mobileMenu?.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+    mobileMenu?.classList.remove('scale-100', 'opacity-100', 'pointer-events-auto');
+    line1?.classList.remove('rotate-45', 'translate-y-2');
+    line2?.classList.remove('opacity-0');
+    line3?.classList.remove('-rotate-45', '-translate-y-2');
+  }
+
+  function openMenu() {
+    isOpen = true;
+    mobileMenu?.classList.remove('scale-95', 'opacity-0', 'pointer-events-none');
+    mobileMenu?.classList.add('scale-100', 'opacity-100', 'pointer-events-auto');
+    line1?.classList.add('rotate-45', 'translate-y-2');
+    line2?.classList.add('opacity-0');
+    line3?.classList.add('-rotate-45', '-translate-y-2');
+  }
+
+  menuBtn?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  // Close menu when clicking a link
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
+</script>

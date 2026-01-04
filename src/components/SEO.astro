@@ -1,0 +1,327 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-image.jpg',
+  canonicalURL = Astro.url.href,
+  type = 'website'
+} = Astro.props;
+
+const siteName = "Al-Malqa Restaurant | مطعم الملقى";
+const siteNameAr = "مطعم الملقى";
+const siteNameEn = "Al-Malqa Restaurant";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const siteUrl = "https://almalqa.qa";
+
+// Absolute image URL for social sharing
+const absoluteImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Arabic description for alt locale
+const descriptionAr = "مطعم الملقى - أفخم مطعم عربي في الدوحة، قطر. تذوق أشهى الأطباق العربية الأصيلة مثل المضغوط بالدجاج واللحم والحاشي. توصيل سريع عبر طلبات، سنونو، رفيق، ديليفيرو وكيتا.";
+
+// Keywords for SEO
+const keywords = [
+  // Arabic keywords - مضغوط focused
+  "مطعم الملقى",
+  "مضغوط",
+  "مضغوط دجاج",
+  "مضغوط لحم",
+  "مضغوط حاشي",
+  "مضغوط الدوحة",
+  "أفضل مضغوط قطر",
+  "مطعم عربي الدوحة",
+  "مطعم قطري",
+  "أكل عربي",
+  "مجلس",
+  "طعام عربي في قطر",
+  "توصيل طعام الدوحة",
+  "أفضل مطعم عربي قطر",
+  "مطعم شعبي الدوحة",
+  "أكلات خليجية",
+  "مطعم خليجي",
+  "رز مضغوط",
+  // English keywords
+  "Al-Malqa Restaurant",
+  "Almalqa Restaurant",
+  "Al Malqa Doha",
+  "Madghut",
+  "Madghut chicken",
+  "Madghut lamb",
+  "Madghut camel",
+  "Madghut Doha",
+  "Best Madghut Qatar",
+  "Arabic restaurant Doha",
+  "Qatari food",
+  "Arabic cuisine Qatar",
+  "Best Arabic restaurant Doha",
+  "Salwa Road restaurant",
+  "food delivery Doha",
+  "Majlis dining",
+  "traditional Arabic food Qatar",
+  "Gulf cuisine Doha",
+  "Hashi restaurant Qatar"
+].join(", ");
+
+// Restaurant Schema JSON-LD (Enhanced for Arabic)
+const restaurantSchema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Al-Malqa Restaurant",
+  "alternateName": ["مطعم الملقى", "Almalqa", "Al Malqa", "الملقى"],
+  "description": description,
+  "image": [absoluteImageUrl],
+  "url": siteUrl,
+  "telephone": "+97471078400",
+  "email": "info@almalqa.qa",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "St 340, Salwa Road",
+    "addressLocality": "Doha",
+    "addressRegion": "Doha",
+    "postalCode": "",
+    "addressCountry": "QA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 25.2544358,
+    "longitude": 51.4820538
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "QAR",
+  "paymentAccepted": "Cash, Credit Card, Debit Card",
+  "servesCuisine": ["Arabic", "Qatari", "Middle Eastern", "Gulf Cuisine", "Traditional Arabian", "مضغوط"],
+  "menu": `${siteUrl}/#menu`,
+  "hasMenu": {
+    "@type": "Menu",
+    "name": "Main Menu",
+    "description": "Authentic Arabic dishes including our signature Madghut (مضغوط)",
+    "hasMenuSection": [
+      {
+        "@type": "MenuSection",
+        "name": "المضغوط - Signature Madghut Dishes",
+        "description": "Our famous pressure-cooked rice dishes - مضغوط",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Madghut Chicken - دجاج مضغوط",
+            "description": "Traditional pressure-cooked chicken with aromatic rice - أرز مضغوط مع دجاج"
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Madghut Lamb - لحم مضغوط",
+            "description": "Tender lamb pressure-cooked with spiced rice - أرز مضغوط مع لحم غنم"
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Madghut Hashi - مضغوط حاشي",
+            "description": "Premium camel meat prepared in traditional Madghut style - لحم الإبل المضغوط"
+          }
+        ]
+      }
+    ]
+  },
+  "acceptsReservations": "True",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"],
+      "opens": "11:00",
+      "closes": "23:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday"],
+      "opens": "12:15",
+      "closes": "23:30"
+    }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/almalqa.qa/",
+    "https://www.tiktok.com/@almalqa.qa",
+    "https://www.facebook.com/almalqa.qa"
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "200",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "potentialAction": {
+    "@type": "OrderAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteUrl}/#order`,
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+  }
+};
+
+// LocalBusiness Schema for better local SEO
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "مطعم الملقى - Al-Malqa Restaurant",
+  "image": absoluteImageUrl,
+  "url": siteUrl,
+  "telephone": "+97471078400",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "St 340, Salwa Road",
+    "addressLocality": "الدوحة",
+    "addressRegion": "Doha",
+    "addressCountry": "قطر"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 25.2544358,
+    "longitude": 51.4820538
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Doha"
+  },
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 25.2544358,
+      "longitude": 51.4820538
+    },
+    "geoRadius": "30000"
+  }
+};
+
+// BreadcrumbList Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Menu",
+      "item": `${siteUrl}/#menu`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Order",
+      "item": `${siteUrl}/#order`
+    }
+  ]
+};
+
+// FoodEstablishment Schema for food-specific SEO
+const foodEstablishmentSchema = {
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "Al-Malqa Restaurant | مطعم الملقى",
+  "servesCuisine": "Arabic, Qatari, Gulf, مضغوط",
+  "menu": `${siteUrl}/#menu`,
+  "hasMenu": {
+    "@type": "Menu",
+    "hasMenuSection": {
+      "@type": "MenuSection",
+      "name": "المضغوط - Madghut",
+      "description": "Signature pressure-cooked rice dishes - أفضل مضغوط في قطر"
+    }
+  }
+};
+---
+
+<!-- Primary Meta Tags -->
+<title>{fullTitle}</title>
+<meta name="title" content={fullTitle} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content="Al-Malqa Restaurant | مطعم الملقى" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow" />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Language and Region -->
+<meta name="language" content="Arabic, English" />
+<meta name="geo.region" content="QA" />
+<meta name="geo.placename" content="Doha, Qatar" />
+<meta name="geo.position" content="25.2544358;51.4820538" />
+<meta name="ICBM" content="25.2544358, 51.4820538" />
+
+<!-- Alternate Languages -->
+<link rel="alternate" hreflang="ar" href={canonicalURL} />
+<link rel="alternate" hreflang="en" href={canonicalURL} />
+<link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
+<!-- Open Graph / Facebook / WhatsApp -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={`${siteNameAr} | ${siteNameEn} - أفضل مضغوط في الدوحة`} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteImageUrl} />
+<meta property="og:image:secure_url" content={absoluteImageUrl} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="مطعم الملقى - Al-Malqa Restaurant - أفضل مضغوط دجاج ولحم وحاشي في الدوحة، قطر" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content="ar_QA" />
+<meta property="og:locale:alternate" content="en_QA" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={`${siteNameAr} | ${siteNameEn}`} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteImageUrl} />
+<meta name="twitter:image:alt" content="مطعم الملقى - Al-Malqa Restaurant - أفضل مضغوط في قطر" />
+
+<!-- Additional Social Media Tags -->
+<meta property="article:author" content="Al-Malqa Restaurant" />
+<meta property="article:publisher" content="https://www.facebook.com/almalqa.qa" />
+
+<!-- WhatsApp Specific (uses OG tags but these ensure best display) -->
+<meta property="og:image:url" content={absoluteImageUrl} />
+
+<!-- Apple/iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="مطعم الملقى" />
+
+<!-- Microsoft/Bing -->
+<meta name="msapplication-TileColor" content="#770e1d" />
+
+<!-- Theme Color for Mobile Browsers -->
+<meta name="theme-color" content="#770e1d" />
+
+<!-- Preconnect to external domains for faster loading -->
+<link rel="preconnect" href="https://www.google-analytics.com" />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+
+<!-- DNS Prefetch for delivery partners -->
+<link rel="dns-prefetch" href="https://www.talabat.com" />
+<link rel="dns-prefetch" href="https://deliveroo.com.qa" />
+<link rel="dns-prefetch" href="https://apps.snoonu.com" />
+
+<!-- JSON-LD Schemas -->
+<script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(foodEstablishmentSchema)} />

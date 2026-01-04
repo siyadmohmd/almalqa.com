@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1f0d0b"/>
+  <circle cx="400" cy="300" r="200" fill="#770e1d" opacity="0.3"/>
+  <text x="400" y="320" font-family="Georgia, serif" font-size="24" fill="#E5C5A1" text-anchor="middle">Dish Image</text>
+</svg>

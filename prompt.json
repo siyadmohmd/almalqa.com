@@ -1,0 +1,128 @@
+{
+  "project_metadata": {
+    "title": "Al-Malqa Restaurant Website Development",
+    "role": "Senior Creative Front-End Developer & UI/UX Designer",
+    "objective": "Build a high-performance, SEO-rich, modern multi-page website for 'Al-Malqa', a premium Arabic restaurant brand.",
+    "framework": "Astro",
+    "styling": "Tailwind CSS",
+    "animation_library": "Framer Motion (React integration in Astro) or Native CSS Animations",
+    "architecture": "Multi-page with Astro View Transitions (SPA feel)"
+  },
+  "brand_identity": {
+    "color_palette": {
+      "primary_backgrounds": [
+        { "name": "Maroon", "hex": "#770e1d" },
+        { "name": "Desert Sand", "hex": "#E5C5A1" }
+      ],
+      "secondary_accents": [
+        { "name": "Carrot Orange", "hex": "#DD9528" },
+        { "name": "Licorice", "hex": "#1f0d0b" }
+      ]
+    },
+    "typography": {
+      "headings": "Tuppence (Serif)",
+      "body": "Neue Montreal (Sans-serif)",
+      "arabic_support": "Marhey (Ensure RTL compatibility)"
+    },
+    "visual_language": {
+      "border_radius": "rounded-2xl or rounded-3xl",
+      "texture": "Subtle noise or 'Carpet Motif' pattern at 5% opacity in background",
+      "vibe": "Warm, 'Majlis' style gathering, authentic, modern nostalgia"
+    }
+  },
+  "technical_specifications": {
+    "seo_requirements": [
+      "Strictly typed SEO components",
+      "Open Graph tags & Twitter Cards",
+      "JSON-LD 'Restaurant' Schema injection (hours, address, price range)"
+    ],
+    "performance": [
+      "Mobile-first responsive design (Priority)",
+      "Lazy load images below the fold",
+      "Next-gen image formats (.webp)"
+    ],
+    "navigation": "Single-scroll feel using Astro View Transitions for morphing between routes"
+  },
+  "site_structure": {
+    "pages": [
+      {
+        "page_name": "Home",
+        "route": "/",
+        "key_features": [
+          {
+            "element": "Hero Section",
+            "description": "Visually striking split or centered layout."
+          },
+          {
+            "element": "Signature Dish Animation",
+            "description": "Two high-quality images of signature dishes in the center. MUST have a continuous, mild 'floating/jump' animation (sine wave easing). Weightless feel."
+          },
+          {
+            "element": "Content",
+            "description": "Headline: 'A Place of Gathering'. Primary CTA: 'Order Now' button."
+          }
+        ]
+      },
+      {
+        "page_name": "Menu",
+        "route": "/menu",
+        "layout_style": "CSS Grid / Masonry 'Bento Box'",
+        "design_rules": [
+          "No standard lists. Use curved-edge rectangles (border-radius: 20px).",
+          "Main Courses: Occupy larger grid cells (col-span-2 or row-span-2).",
+          "Subsidiaries/Sides: Occupy standard single cells (col-span-1).",
+          "Visual Ratio: Big to Small mosaic effect.",
+          "Content: Placeholder food images with overlaid name and price."
+        ]
+      },
+      {
+        "page_name": "Our Story",
+        "route": "/our-story",
+        "design_style": "Editorial / Wireframe",
+        "content_structure": [
+          "Origin Story text (74th Birthday/Majlis concept).",
+          "Asymmetric layout with 3-4 images scattered alongside text.",
+          "Captions/descriptions below each image.",
+          "Vibe: Nostalgic and rooted in Qatar’s heritage."
+        ]
+      },
+      {
+        "page_name": "Order Now",
+        "route": "/order",
+        "functionality": "Link Tree / Conversion Hub",
+        "elements": [
+          {
+            "type": "Primary Action",
+            "label": "WhatsApp Ordering",
+            "action": "Direct API Link"
+          },
+          {
+            "type": "Delivery Partners Grid",
+            "description": "Branded cards using partner colors.",
+            "links": [
+              { "name": "Keeta", "url": "https://url-eu.mykeeta.com/TtxQvtGz" },
+              { "name": "Talabat", "url": "https://www.talabat.com/qatar/al-malqa-restaurant" },
+              { "name": "Snoonu", "url": "https://apps.snoonu.com/#/brand/689ee1810b00664b3617cb34?share=1" },
+              { "name": "Rafeeq", "url": "https://www.gorafeeq.com/en/home/restaurants/al-malqa-restaurant-28849" },
+              { "name": "Deliveroo", "url": "https://deliveroo.com.qa/en/menu/doha/haloul-west/al-malqa-restaurant-salwa-road" }
+            ]
+          }
+        ]
+      }
+    ],
+    "footer": {
+      "content": "Address, Copyright, Social Media Links",
+      "social_links": [
+        { "platform": "Instagram", "url": "https://www.instagram.com/almalqa.qa/" },
+        { "platform": "TikTok", "url": "https://www.tiktok.com/@almalqa.qa" },
+        { "platform": "Facebook", "url": "https://www.facebook.com/almalqa.qa" }
+      ]
+    }
+  },
+  "deliverables": [
+    "Astro Project Structure (Folder hierarchy)",
+    "tailwind.config.mjs (including custom color palette)",
+    "Component code for: HeroAnimation, BentoMenuGrid, StoryLayout, OrderLinks",
+    "Page code for: index.astro, menu.astro, story.astro, order.astro"
+  ]
+}

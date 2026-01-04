@@ -1,0 +1,140 @@
+---
+interface MenuItem {
+  id: string;
+  name: string;
+  nameAr?: string;
+  price?: string;
+  image: string;
+  category: 'main' | 'side' | 'drink' | 'dessert' | 'laban';
+  featured?: boolean;
+}
+
+interface Props {
+  items: MenuItem[];
+}
+
+const { items } = Astro.props;
+
+// Separate items by category
+const mainDishes = items.filter(item => item.category === 'main');
+const mojitos = items.filter(item => item.category === 'drink');
+const labanDrinks = items.filter(item => item.category === 'laban');
+const sides = items.filter(item => item.category === 'side');
+---
+
+<section class="py-16 px-4 md:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-4xl md:text-5xl text-licorice mb-4">Our Menu</h2>
+      <p class="text-licorice/70 max-w-2xl mx-auto">
+        Discover our carefully crafted dishes, prepared with authentic recipes passed down through generations.
+      </p>
+    </div>
+
+    <!-- Main Dishes - Bento Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] md:auto-rows-[250px] mb-12">
+      {mainDishes.map((item) => {
+        const isLarge = item.featured;
+        const spanClass = isLarge 
+          ? 'col-span-2 row-span-2' 
+          : 'col-span-1 row-span-1';
+        
+        return (
+          <a
+            href="#order"
+            class:list={[
+              "group relative overflow-hidden rounded-[20px] cursor-pointer transition-transform hover:scale-[1.02] block",
+              spanClass
+            ]}
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-licorice/90 via-licorice/40 to-transparent"></div>
+            <div class="absolute inset-0 p-4 md:p-6 flex flex-col justify-end">
+              {item.nameAr && (
+                <span class:list={[
+                  "text-carrot/90 font-arabic mb-1 font-medium",
+                  isLarge ? "text-lg md:text-xl" : "text-base md:text-lg"
+                ]} dir="rtl">
+                  {item.nameAr}
+                </span>
+              )}
+              <h3 class:list={[
+                "font-heading text-desert-sand transition-colors group-hover:text-carrot",
+                isLarge ? "text-2xl md:text-3xl" : "text-lg md:text-xl"
+              ]}>
+                {item.name}
+              </h3>
+            </div>
+            <div class="absolute top-4 right-4 w-2 h-2 rounded-full bg-carrot opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          </a>
+        );
+      })}
+    </div>
+
+    <!-- Mojitos Section Header -->
+    <div class="text-center mb-6">
+      <h3 class="font-heading text-2xl md:text-3xl text-maroon">Refreshing Mojitos</h3>
+    </div>
+
+    <!-- Mojitos - 6 items in one row -->
+    <div class="grid grid-cols-3 md:grid-cols-6 gap-3 md:gap-4 mb-12">
+      {mojitos.map((item) => (
+        <a href="#order" class="group relative overflow-hidden rounded-[16px] cursor-pointer transition-transform hover:scale-[1.02] aspect-square block">
+          <img
+            src={item.image}
+            alt={item.name}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-licorice/90 via-licorice/30 to-transparent"></div>
+          <div class="absolute inset-0 p-3 md:p-4 flex flex-col justify-end">
+            {item.nameAr && (
+              <span class="text-carrot/90 font-arabic text-xs md:text-sm mb-0.5 font-medium" dir="rtl">
+                {item.nameAr}
+              </span>
+            )}
+            <h3 class="font-heading text-desert-sand text-sm md:text-base transition-colors group-hover:text-carrot leading-tight">
+              {item.name}
+            </h3>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Laban & Sides Section Header -->
+    <div class="text-center mb-6">
+      <h3 class="font-heading text-2xl md:text-3xl text-maroon">Laban Drinks & Sides</h3>
+    </div>
+
+    <!-- Laban + Sides - 4 items in one row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+      {[...labanDrinks, ...sides].map((item) => (
+        <a href="#order" class="group relative overflow-hidden rounded-[16px] cursor-pointer transition-transform hover:scale-[1.02] aspect-square block">
+          <img
+            src={item.image}
+            alt={item.name}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-licorice/90 via-licorice/30 to-transparent"></div>
+          <div class="absolute inset-0 p-3 md:p-4 flex flex-col justify-end">
+            {item.nameAr && (
+              <span class="text-carrot/90 font-arabic text-sm md:text-base mb-0.5 font-medium" dir="rtl">
+                {item.nameAr}
+              </span>
+            )}
+            <h3 class="font-heading text-desert-sand text-base md:text-lg transition-colors group-hover:text-carrot leading-tight">
+              {item.name}
+            </h3>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

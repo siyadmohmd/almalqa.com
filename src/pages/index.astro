@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import BentoMenuGrid from '../components/BentoMenuGrid.astro';
+import StorySection from '../components/StorySection.astro';
+import OrderLinks from '../components/OrderLinks.astro';
+
+// Menu items data
+const menuItems = [
+  // Main Dishes (in specified order)
+  {
+    id: '1',
+    name: 'Madghut Chicken',
+    nameAr: 'دجاج مضغوط',
+    image: '/images/menu/madghut-chicken.jpg',
+    category: 'main' as const,
+    featured: true,
+  },
+  {
+    id: '2',
+    name: 'Amber Chicken',
+    nameAr: 'دجاج أمبار',
+    image: '/images/menu/amber-chicken.jpg',
+    category: 'main' as const,
+    featured: true,
+  },
+  {
+    id: '3',
+    name: 'Madghut Lamb',
+    nameAr: 'لحم مضغوط',
+    image: '/images/menu/madghut-lamb.jpg',
+    category: 'main' as const,
+    featured: true,
+  },
+  {
+    id: '4',
+    name: 'Amber Meat (Mutton)',
+    nameAr: 'لحم أمبار',
+    image: '/images/menu/amber-meat.jpg',
+    category: 'main' as const,
+    featured: true,
+  },
+  {
+    id: '5',
+    name: 'Madghut Hashi',
+    nameAr: 'مضغوط هاشي',
+    image: '/images/menu/madghut-hashi.jpg',
+    category: 'main' as const,
+    featured: true,
+  },
+  {
+    id: '6',
+    name: 'BBQ Chicken',
+    nameAr: 'دجاج مشوي',
+    image: '/images/menu/bbq-chicken.webp',
+    category: 'main' as const,
+  },
+  {
+    id: '7',
+    name: 'Honey Chilli Chicken BBQ',
+    nameAr: 'دجاج مشوي بالعسل والفلفل الحار',
+    image: '/images/menu/honey-chilli-chicken.webp',
+    category: 'main' as const,
+  },
+  {
+    id: '8',
+    name: 'Sweet Peri Peri BBQ Chicken',
+    nameAr: 'دجاج بيري بيري مشوي حلو',
+    image: '/images/menu/sweet-peri-peri.webp',
+    category: 'main' as const,
+  },
+  // Drinks (Mojitos)
+  {
+    id: '9',
+    name: 'Classic Mojito',
+    nameAr: 'كلاسيك موهيتو',
+    image: '/images/menu/classic-mojito.webp',
+    category: 'drink' as const,
+  },
+  {
+    id: '10',
+    name: 'Blue Lagoon Mojito',
+    nameAr: 'موهيتو بلو لاجون',
+    image: '/images/menu/blue-lagoon-mojito.jpg',
+    category: 'drink' as const,
+  },
+  {
+    id: '11',
+    name: 'Green Mint Mojito',
+    nameAr: 'موهيتو النعناع الأخضر',
+    image: '/images/menu/green-mint-mojito.jpg',
+    category: 'drink' as const,
+  },
+  {
+    id: '12',
+    name: 'Passion Fruit Mojito',
+    nameAr: 'موهيتو باشن فروت',
+    image: '/images/menu/passion-fruit-mojito.jpg',
+    category: 'drink' as const,
+  },
+  {
+    id: '13',
+    name: 'Pomegranate Mojito',
+    nameAr: 'موهيتو رمان',
+    image: '/images/menu/pomegranate-mojito.jpg',
+    category: 'drink' as const,
+  },
+  {
+    id: '14',
+    name: 'Strawberry Mojito',
+    nameAr: 'موهيتو فراولة',
+    image: '/images/menu/strawberry-mojito.jpg',
+    category: 'drink' as const,
+  },
+  // Laban Drinks
+  {
+    id: '15',
+    name: 'Malqa Special Laban',
+    nameAr: 'لبن الملقى الخاص',
+    image: '/images/menu/malqa-special-laban.webp',
+    category: 'laban' as const,
+  },
+  {
+    id: '16',
+    name: 'Ruman Laban',
+    nameAr: 'لبن رمان',
+    image: '/images/menu/ruman-laban.webp',
+    category: 'laban' as const,
+  },
+  // Sides & Sauces
+  {
+    id: '17',
+    name: 'Fresh Chilli Sauce',
+    nameAr: 'صلصة حارة (دقوس)',
+    image: '/images/menu/fresh-chilli-sauce.jpg',
+    category: 'side' as const,
+  },
+  {
+    id: '18',
+    name: 'Yogurt with Cucumber Salad',
+    nameAr: 'سلطة خيار باللبن',
+    image: '/images/menu/yogurt-cucumber-salad.jpg',
+    category: 'side' as const,
+  },
+];
+---
+
+<BaseLayout 
+  title="مطعم الملقى | Al-Malqa Restaurant - أفضل مضغوط في الدوحة" 
+  description="مطعم الملقى - أفضل مضغوط دجاج ولحم وحاشي في الدوحة، قطر. تذوق أشهى الأطباق العربية الأصيلة في أجواء المجلس التقليدية. توصيل سريع. Al-Malqa Restaurant - Best Madghut in Doha, Qatar. Authentic Arabic cuisine."
+  image="/images/og-image.jpg"
+>
+  <!-- Home / Hero Section -->
+  <section id="home">
+    <HeroSection />
+  </section>
+  
+  <!-- Featured Section -->
+  <section class="py-16 md:py-24 px-4 md:px-8 bg-maroon">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="font-heading text-4xl md:text-5xl text-desert-sand mb-6">
+        Taste the Tradition
+      </h2>
+      <p class="text-desert-sand/80 text-lg max-w-2xl mx-auto mb-10">
+        Every dish at Al-Malqa tells a story—of family recipes, of Qatari heritage, 
+        and of the joy that comes from sharing a meal with loved ones.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="#menu"
+          class="inline-flex items-center justify-center bg-desert-sand text-maroon font-medium px-8 py-4 rounded-2xl text-lg transition-all hover:bg-carrot hover:scale-105"
+        >
+          Explore Our Menu
+        </a>
+        <a
+          href="#our-story"
+          class="inline-flex items-center justify-center border-2 border-desert-sand text-desert-sand font-medium px-8 py-4 rounded-2xl text-lg transition-all hover:bg-desert-sand/10"
+        >
+          Our Story
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Opening Hours -->
+  <section class="py-16 md:py-24 px-4 md:px-8">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-4xl md:text-5xl text-licorice text-center mb-12">
+        Opening Hours
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white/50 backdrop-blur-sm rounded-3xl p-8 text-center">
+          <h3 class="font-heading text-2xl text-maroon mb-4">Sun - Thu & Sat</h3>
+          <p class="text-licorice text-xl">11:00 AM - 11:30 PM</p>
+        </div>
+        <div class="bg-white/50 backdrop-blur-sm rounded-3xl p-8 text-center">
+          <h3 class="font-heading text-2xl text-maroon mb-4">Friday</h3>
+          <p class="text-licorice text-xl">12:15 PM - 11:30 PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu">
+    <BentoMenuGrid items={menuItems} />
+    
+    <!-- Menu Note -->
+    <div class="py-12 px-4 md:px-8 bg-maroon/5">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-licorice/70">
+          All our dishes are prepared fresh daily using traditional recipes. 
+          Prices are subject to change. Please inform our staff of any dietary requirements or allergies.
+        </p>
+        <a
+          href="#order"
+          class="inline-flex items-center justify-center bg-maroon text-desert-sand font-medium px-8 py-4 rounded-2xl text-lg transition-all hover:bg-licorice hover:scale-105 mt-8"
+        >
+          Order Now
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section id="our-story">
+    <StorySection />
+  </section>
+
+  <!-- Order Section -->
+  <section id="order">
+    <OrderLinks />
+  </section>
+</BaseLayout>
