@@ -4,12 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "20"
-
-# Redirects for SPA-like behavior (single page with anchors)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  NPM_FLAGS = "--legacy-peer-deps"
 
 # Headers for better caching and security
 [[headers]]
