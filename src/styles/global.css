@@ -17,7 +17,7 @@
   /* Font Families */
   --font-heading: 'tuppence', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
-  --font-arabic: 'marhey', 'Inter', sans-serif;
+  --font-arabic: 'marhey-variable', 'Inter', sans-serif;
   
   /* Custom Animations */
   --animate-float: float 3s ease-in-out infinite;
