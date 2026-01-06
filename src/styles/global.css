@@ -1,10 +1,6 @@
 @import "tailwindcss";
 
-/* Adobe Typekit Fonts (Tuppence & Marhey) */
-@import url('https://use.typekit.net/pog3iaz.css');
-
-/* Google Fonts - Inter (Neue Montreal alternative) */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* Fonts loaded via <link> in BaseLayout.astro for better performance */
 
 /* Theme Configuration */
 @theme {
