@@ -1,37 +1,7 @@
+/* Google Fonts Import - Must be first */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
-
-/* Custom Fonts */
-@font-face {
-  font-family: 'Tuppence';
-  src: url('/fonts/Tuppence-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Neue Montreal';
-  src: url('/fonts/NeueMontreal-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Marhey';
-  src: url('/fonts/Marhey-Variable.woff2') format('woff2');
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* Theme Configuration */
 @theme {
@@ -41,10 +11,10 @@
   --color-carrot: #DD9528;
   --color-licorice: #1f0d0b;
   
-  /* Font Families */
-  --font-heading: 'Tuppence', Georgia, serif;
-  --font-body: 'Neue Montreal', system-ui, sans-serif;
-  --font-arabic: 'Marhey', 'Neue Montreal', sans-serif;
+  /* Font Families - Using Google Fonts */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-arabic: 'Noto Kufi Arabic', 'Inter', sans-serif;
   
   /* Custom Animations */
   --animate-float: float 3s ease-in-out infinite;
