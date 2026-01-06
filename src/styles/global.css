@@ -1,7 +1,10 @@
-/* Google Fonts Import - Must be first */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap');
-
 @import "tailwindcss";
+
+/* Adobe Typekit Fonts (Tuppence & Marhey) */
+@import url('https://use.typekit.net/unf7uta.css');
+
+/* Google Fonts - Inter (Neue Montreal alternative) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 /* Theme Configuration */
 @theme {
@@ -11,10 +14,10 @@
   --color-carrot: #DD9528;
   --color-licorice: #1f0d0b;
   
-  /* Font Families - Using Google Fonts */
-  --font-heading: 'Playfair Display', Georgia, serif;
+  /* Font Families */
+  --font-heading: 'tuppence', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
-  --font-arabic: 'Noto Kufi Arabic', 'Inter', sans-serif;
+  --font-arabic: 'marhey', 'Inter', sans-serif;
   
   /* Custom Animations */
   --animate-float: float 3s ease-in-out infinite;
